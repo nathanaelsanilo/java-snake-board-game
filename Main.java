@@ -27,10 +27,14 @@ public class Main {
 
         Dice dice = new Dice();
         Board board = new Board(15, snakes, ladders);
-        Player[] players = {
-                new Player("alpha", dice, board),
-                new Player("beta", dice, board),
-        };
+
+        System.out.println("Enter the total number of players: ");
+        int totalPlayers = Integer.parseInt(scanner.nextLine());
+        Player[] players = new Player[totalPlayers];
+        for (int i = 0; i < players.length; i++) {
+            String name = scanner.nextLine();
+            players[i] = new Player(name, dice, board);
+        }
 
         Game game = new Game(players);
         game.play();
