@@ -1,12 +1,40 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Game is started!");
+
+        System.out.println("Enter the total number of snakes: ");
+        int totalSnakes = Integer.parseInt(scanner.nextLine());
+        Snake[] snakes = new Snake[totalSnakes];
+        for (int i = 0; i < snakes.length; i++) {
+            String input = scanner.nextLine();
+            int head = Integer.parseInt(input.split(" ")[0]);
+            int tail = Integer.parseInt(input.split(" ")[1]);
+            snakes[i] = new Snake(head, tail);
+        }
+
+        System.out.println("Enter the total number of ladders: ");
+        int totalLadders = Integer.parseInt(scanner.nextLine());
+        Ladder[] ladders = new Ladder[totalLadders];
+        for (int i = 0; i < ladders.length; i++) {
+            String input = scanner.nextLine();
+            int head = Integer.parseInt(input.split(" ")[0]);
+            int tail = Integer.parseInt(input.split(" ")[1]);
+            ladders[i] = new Ladder(head, tail);
+        }
+
         Dice dice = new Dice();
-        Snake[] snakes = { new Snake(5, 3), new Snake(7, 6) };
-        Ladder[] ladders = { new Ladder(1, 4), new Ladder(2, 8) };
         Board board = new Board(15, snakes, ladders);
-        Player[] players = { new Player("alpha", dice, board), new Player("beta", dice, board) };
+        Player[] players = {
+                new Player("alpha", dice, board),
+                new Player("beta", dice, board),
+        };
+
         Game game = new Game(players);
         game.play();
+
     }
 }
 
@@ -81,12 +109,14 @@ class Player {
 
         Snake snake = isStepOnSnake(position);
         if (snake != null) {
+            System.out.println(playerName + " stepped on snake at " + snake.head + ", moving to " + snake.tail);
             position = snake.tail;
         }
 
         Ladder ladder = isStepOnLadder(position);
         if (ladder != null) {
-            position = ladder.head;
+            System.out.println(playerName + " stepped on ladder at " + ladder.head + ", moving to " + ladder.tail);
+            position = ladder.tail;
         }
 
         if (isFinished(position)) {
@@ -145,7 +175,7 @@ class Ladder {
 
 class Board {
     private int size;
-    private int[] board;
+    private int[] boards;
     private Snake[] snakes;
     private Ladder[] ladders;
 
@@ -158,9 +188,9 @@ class Board {
     }
 
     private void initialize(int n) {
-        board = new int[n];
+        boards = new int[n];
         for (int i = 0; i < n; i++) {
-            board[i] = i;
+            boards[i] = i;
         }
     }
 
