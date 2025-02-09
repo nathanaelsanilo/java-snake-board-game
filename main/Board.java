@@ -2,7 +2,6 @@ package main;
 
 public class Board {
     private int size;
-    private int[] boards;
     private Snake[] snakes;
     private Ladder[] ladders;
 
@@ -10,15 +9,6 @@ public class Board {
         this.size = size;
         this.snakes = snakes;
         this.ladders = ladders;
-
-        initialize(size);
-    }
-
-    private void initialize(int n) {
-        boards = new int[n];
-        for (int i = 0; i < n; i++) {
-            boards[i] = i;
-        }
     }
 
     public Snake getSnakeByPosition(int position) {
