@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 public class Player {
     public String playerName;
     public int position = 0;
@@ -11,6 +13,17 @@ public class Player {
         this.playerName = playerName;
         this.dice = dice;
         this.board = board;
+    }
+
+    public static Player[] buildPlayers(int total, Dice dice, Board board) {
+        Scanner scanner = new Scanner(System.in);
+        Player[] players = new Player[total];
+        for (int i = 0; i < players.length; i++) {
+            String playerName = scanner.nextLine();
+            players[i] = new Player(playerName, dice, board);
+        }
+
+        return players;
     }
 
     private boolean hasReachedMaxPosition(int step) {
