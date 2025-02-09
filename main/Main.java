@@ -28,7 +28,7 @@ public class Main {
         }
 
         Dice dice = new Dice();
-        Board board = new Board(15, snakes, ladders);
+        Board board = new Board(100, snakes, ladders);
 
         System.out.println("Enter the total number of players: ");
         int totalPlayers = Integer.parseInt(scanner.nextLine());
