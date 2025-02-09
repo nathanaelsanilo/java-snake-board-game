@@ -4,28 +4,41 @@ public class Main {
         Snake[] snakes = { new Snake(5, 3), new Snake(7, 6) };
         Ladder[] ladders = { new Ladder(1, 4), new Ladder(2, 8) };
         Board board = new Board(15, snakes, ladders);
-        Player player = new Player("alpha", dice, board);
-        Game game = new Game(player, board);
+        Player[] players = { new Player("alpha", dice, board), new Player("beta", dice, board) };
+        Game game = new Game(players);
         game.play();
     }
 }
 
 class Game {
-    public Player player;
-    public Board board;
-    public boolean isOver = false;
+    private Player[] players;
+    private int turn = 0;
 
-    public Game(Player player, Board board) {
-        this.player = player;
-        this.board = board;
+    public Game(Player[] players) {
+        this.players = players;
     }
 
     public void play() {
         for (int i = 0; i < 10; i++) {
-            boolean isOver = player.move();
-            if (isOver) {
+            Player player = getPLayerTurn(turn);
+            boolean isFinished = player.move();
+
+            if (isFinished) {
                 break;
             }
+
+            nextTurn();
+        }
+    }
+
+    private Player getPLayerTurn(int givenTurn) {
+        return players[givenTurn];
+    }
+
+    private void nextTurn() {
+        turn++;
+        if (turn > players.length - 1) {
+            turn = 0;
         }
     }
 }
