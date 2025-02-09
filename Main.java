@@ -13,20 +13,16 @@ public class Main {
 class Game {
     private Player[] players;
     private int turn = 0;
+    private boolean isFinished = false;
 
     public Game(Player[] players) {
         this.players = players;
     }
 
     public void play() {
-        for (int i = 0; i < 10; i++) {
+        while (!isFinished) {
             Player player = getPLayerTurn(turn);
-            boolean isFinished = player.move();
-
-            if (isFinished) {
-                break;
-            }
-
+            isFinished = player.move();
             nextTurn();
         }
     }
