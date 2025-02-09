@@ -3,8 +3,16 @@ package main;
 import java.util.Scanner;
 
 public class Snake {
-    public int head = 0;
-    public int tail = 0;
+    private int head = 0;
+    private int tail = 0;
+
+    public int getHead() {
+        return head;
+    }
+
+    public int getTail() {
+        return tail;
+    }
 
     public Snake(int head, int tail) {
         this.head = head;

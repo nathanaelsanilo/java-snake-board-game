@@ -23,7 +23,7 @@ public class Board {
 
     public Snake getSnakeByPosition(int position) {
         for (int i = 0; i < snakes.length; i++) {
-            if (position == snakes[i].head) {
+            if (position == snakes[i].getHead()) {
                 return snakes[i];
             }
         }
@@ -33,7 +33,7 @@ public class Board {
 
     public Ladder getLadderByPosition(int position) {
         for (int i = 0; i < ladders.length; i++) {
-            if (position == ladders[i].head) {
+            if (position == ladders[i].getHead()) {
                 return ladders[i];
             }
         }

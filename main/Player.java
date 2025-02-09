@@ -3,10 +3,10 @@ package main;
 import java.util.Scanner;
 
 public class Player {
-    public String playerName;
-    public int position = 0;
-    public Dice dice;
-    public Board board;
+    private String playerName;
+    private int position = 0;
+    private Dice dice;
+    private Board board;
     private boolean isFinished = false;
 
     public Player(String playerName, Dice dice, Board board) {
@@ -55,14 +55,16 @@ public class Player {
 
         Snake snake = isStepOnSnake(position);
         if (snake != null) {
-            System.out.println(playerName + " stepped on snake at " + snake.head + ", moving to " + snake.tail);
-            position = snake.tail;
+            System.out
+                    .println(playerName + " stepped on snake at " + snake.getHead() + ", moving to " + snake.getTail());
+            position = snake.getTail();
         }
 
         Ladder ladder = isStepOnLadder(position);
         if (ladder != null) {
-            System.out.println(playerName + " stepped on ladder at " + ladder.head + ", moving to " + ladder.tail);
-            position = ladder.tail;
+            System.out.println(
+                    playerName + " stepped on ladder at " + ladder.getHead() + ", moving to " + ladder.getTail());
+            position = ladder.getTail();
         }
 
         if (isFinished(position)) {

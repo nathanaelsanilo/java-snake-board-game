@@ -3,8 +3,16 @@ package main;
 import java.util.Scanner;
 
 class Ladder {
-    public int head = 0;
-    public int tail = 0;
+    private int head = 0;
+    private int tail = 0;
+
+    public int getHead() {
+        return head;
+    }
+
+    public int getTail() {
+        return tail;
+    }
 
     public Ladder(int head, int tail) {
         this.head = head;
